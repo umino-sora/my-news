@@ -22,9 +22,9 @@ Route::group(['prefix' => 'admin'], function() {
 //課題3
 //// Route::get('XXX', 'AAAController@bbb');
 
-//課題4
-Route::get('admin/profile/create', 'Admin\ProfileController@add');
-Route::get('admin/profile/edit', 'Admin\ProfileController@edit');
+//task21 課題2、3
+Route::get('admin/profile/create', 'Admin\ProfileController@add')->middleware('auth');
+Route::get('admin/profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
 
 Auth::routes();
 
