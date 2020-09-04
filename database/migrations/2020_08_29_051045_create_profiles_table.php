@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlofilesTable extends Migration
+class CreateProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePlofilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plofiles', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
         // task23 課題4
             $table->string('name');
@@ -31,6 +31,6 @@ class CreatePlofilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plofiles');
+        Schema::dropIfExists('profiles');
     }
 }

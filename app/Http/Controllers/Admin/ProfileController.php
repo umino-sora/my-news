@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Plofile;
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -15,36 +15,36 @@ class ProfileController extends Controller
     
     public function create(Request $request)
     {
-        $this->validate($request, Plofile::$rules);
+        $this->validate($request, Profile::$rules);
         
-        $plofiel = new Plofile;
+        $profile = new Profile;
         $form = $request->all();
         
         unset($form['_token']);
         
-        $plofiel->fill($form);
-        $plofiel->save();
+        $profile->fill($form);
+        $profile->save();
         
         return redirect('admin/profile/create');
     }
     
     public function edit(Request $request)
     {
-        $plofiel = Plofile::find($request->id);
-        if (empty($plofiel)) {
+        $profile = Profile::find($request->id);
+        if (empty($profile)) {
             abort(404);
         }
-        return view('admin.profile.edit', ['plofile_form' => $plofiel]);
+        return view('admin.profile.edit', ['profile_form' => $profile]);
     }
     
     public function update(Request $request)
     {
-        $this->validate($request, Plofile::$rules);
-        $plofiel = Plofile::find($request->id);
-        $plofiel_form = $request->all();
-        unset($plofiel_form['_token']);
+        $this->validate($request, Profile::$rules);
+        $profile = Profile::find($request->id);
+        $profile_form = $request->all();
+        unset($profile_form['_token']);
         
-        $plofiel->fill($plofiel_form)->save();
+        $profile->fill($profile_form)->save();
         
         return redirect('admin/profile/edit');
     }
