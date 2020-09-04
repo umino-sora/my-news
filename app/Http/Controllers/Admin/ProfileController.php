@@ -28,13 +28,24 @@ class ProfileController extends Controller
         return redirect('admin/profile/create');
     }
     
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('admin.profile.edit');
+        $plofiel = Plofile::find($request->id);
+        if (empty($plofiel)) {
+            abort(404);
+        }
+        return view('admin.profile.edit', ['plofile_form' => $plofiel]);
     }
     
-    public function update()
+    public function update(Request $request)
     {
+        $this->validate($request, Plofile::$rules);
+        $plofiel = Plofile::find($request->id);
+        $plofiel_form = $request->all();
+        unset($plofiel_form['_token']);
+        
+        $plofiel->fill($plofiel_form)->save();
+        
         return redirect('admin/profile/edit');
     }
 }
