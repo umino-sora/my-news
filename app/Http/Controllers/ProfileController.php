@@ -11,8 +11,8 @@ class ProfileController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Profile::all()->sortByDesc('updated_at');
+        $profiles = Profile::all()->sortByDesc('updated_at');
         
-        return view('profile.index', ['posts' => $posts]);
+        return view('profile.index', ['profiles' => $profiles]);
     }
 }
